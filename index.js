@@ -26,6 +26,7 @@ app.get('/getData', async (req, res) => {
       data[`umidade${i + 1}`] = dataItems.map(item => item.umidade);
       data[`luminosidade${i + 1}`] = dataItems.map(item => item.luminosidade);
       data[`temperatura${i + 1}`] = dataItems.map(item => item.temperatura);
+      console.log(data)
     }
 
     // Feche a conexão com o MongoDB
