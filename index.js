@@ -33,10 +33,10 @@ app.get('/getData', async (req, res) => {
 
     // Responda com os dados em formato JSON
     res.json(data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao buscar dados no MongoDB' });
-  }
+ } catch (error) {
+  console.error('Erro ao buscar dados no MongoDB:', error);
+  res.status(500).json({ error: 'Erro ao buscar dados no MongoDB' });
+}
 });
 
 const PORT = process.env.PORT;
