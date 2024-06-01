@@ -3,10 +3,15 @@ const app = express();
 require('dotenv').config();
 const cors = require('cors');
 app.use(express.json());
+app.use(express.json());
+app.use(cors());
 
+// Middleware para servir arquivos estáticos
+app.use(express.static('public'));
 const connectDB = require('./connectMongo');
 const { MongoClient } = require('mongodb');
 app.use(cors());
+
 
 
 async function startServer() {
@@ -38,7 +43,9 @@ async function startServer() {
                 res.status(500).json({ error: 'Erro ao buscar dados no MongoDB' });
             }
         });
-
+        app.use((req, res) => {
+          res.sendFile(__dirname + '/index.html');
+      });
         const PORT = process.env.PORT || 3000;
         app.listen(PORT, () => {
             console.log("Server is running on port " + PORT);
