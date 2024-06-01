@@ -46,7 +46,7 @@ async function startServer() {
         app.use((req, res, next) => {
           // Verifica se a rota solicitada corresponde a uma página existente
           if (req.url === '/' || req.url === '/index.html') {
-              res.sendFile(__dirname + '/public' + req.url + '.html');
+              res.sendFile(__dirname +  req.url + '.html');
           } else {
               next();
           }
