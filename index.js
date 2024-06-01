@@ -8,11 +8,12 @@ const connectDB = require('./connectMongo');
 const { MongoClient } = require('mongodb');
 app.use(cors());
 connectDB();
-
+console.log("aqui vai?")
 app.get('/getData', async (req, res) => {
   try {
     const client = new MongoClient(process.env.MONGODB_CONNECT_URI);
     await client.connect();
+    console.log("aqui vai?")
     const collections = [
       'data',
     
@@ -26,9 +27,10 @@ app.get('/getData', async (req, res) => {
       data[`umidade${i + 1}`] = dataItems.map(item => item.umidade);
       data[`luminosidade${i + 1}`] = dataItems.map(item => item.luminosidade);
       data[`temperatura${i + 1}`] = dataItems.map(item => item.temperatura);
-      console.log(data)
+ 
     }
-
+    console.log(data)
+    console.log("teste 1")
     // Feche a conexão com o MongoDB
     await client.close();
 
