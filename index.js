@@ -43,9 +43,15 @@ async function startServer() {
                 res.status(500).json({ error: 'Erro ao buscar dados no MongoDB' });
             }
         });
-        app.use((req, res) => {
-          res.sendFile(__dirname + '/index.html');
+        app.use((req, res, next) => {
+          // Verifica se a rota solicitada corresponde a uma página existente
+          if (req.url === '/' || req.url === '/index.html') {
+              res.sendFile(__dirname + '/public' + req.url + '.html');
+          } else {
+              next();
+          }
       });
+
         const PORT = process.env.PORT || 3000;
         app.listen(PORT, () => {
             console.log("Server is running on port " + PORT);
